@@ -19,15 +19,17 @@ io.on("connection", (socket) => {
   });
 
   socket.on("join_room", (room) => {
+    console.log("some user joiden", room);
     socket.join(room);
   });
 
   socket.on("message", ({ room, message }) => {
-    socket.to(room).emit("message", { message, name: "Friend" });
+    console.log({ room, message });
+    socket.to(room).emit("message", message);
   });
 
   socket.on("chat message", (msg) => {
-    console.log("message", msg);
+    console.log("chat message", msg);
     io.emit("chat message", msg);
   });
 });
