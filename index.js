@@ -19,18 +19,25 @@ io.on("connection", (socket) => {
   });
 
   socket.on("join_room", (room) => {
-    console.log("some user joiden", room);
     socket.join(room);
+    console.log("user joined", room);
+    socket.emit("message", "user has joined a " + room);
+    socket.broadcast.to(room).emit("message", "A new user has joined");
   });
 
   socket.on("message", ({ room, message }) => {
     console.log({ room, message });
     socket.to(room).emit("message", message);
+    io.emit("message", room + ": " + message);
   });
 
   socket.on("chat message", (msg) => {
     console.log("chat message", msg);
     io.emit("chat message", msg);
+  });
+
+  socket.on("disconnect", () => {
+    io.emit("message", "A user has left the chat");
   });
 });
 
