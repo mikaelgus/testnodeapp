@@ -1,6 +1,6 @@
 /** @type {import('tailwindcss').Config} */
 module.exports = {
-  content: ["./src/**/*.{html,js}"],
+  content: ["/public/**/*.{html,js,css}"],
   theme: {
     extend: {
       colors: {
@@ -11,9 +11,9 @@ module.exports = {
         "mg-safety-yellow": "#F1D302",
         "mg-corn": "#FCEC52",
       },
-    },
-    backgroundImage: {
-      "header-image": "url('/src/media/mahdollisuus_bg.png')",
+      backgroundImage: {
+        "header-image": "url('/public/media/mahdollisuus_bg.png')",
+      },
     },
   },
   plugins: [],
